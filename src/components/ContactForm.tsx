@@ -86,13 +86,15 @@ export default function ContactForm() {
     try {
       const url = 'https://call-intellect.bitrix24.ru/rest/11/hvibf14mn9mik133/crm.lead.add.json';
       const params = new URLSearchParams();
-      params.append('FIELDS[TITLE]', 'Новый лид');
+      params.append('FIELDS[TITLE]', 'Новый лид с сайта');
       params.append('FIELDS[NAME]', formData.name);
-      params.append('FIELDS[LAST_NAME]', 'Тестовый');
-      params.append('FIELDS[EMAIL][0][VALUE]', 'test@example.com');
+      params.append('FIELDS[LAST_NAME]', 'нет поля');
+      params.append('FIELDS[EMAIL][0][VALUE]', 'mail@example.com');
       params.append('FIELDS[EMAIL][0][VALUE_TYPE]', 'WORK');
       params.append('FIELDS[PHONE][0][VALUE]', formData.phone);
-      params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+      params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'MOBILE');
+      params.append('FIELDS[COMPANY_TITLE]', 'нет поля');
+      params.append('FIELDS[COMMENTS]', 'Лид создан через форму на сайте');
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

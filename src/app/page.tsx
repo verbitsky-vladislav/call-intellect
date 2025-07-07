@@ -5,7 +5,7 @@ import CaseStudies from '../components/CaseStudies';
 import TrustBlock from '../components/TrustBlock';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
-import ContactForm from '@/components/ContactForm';
+import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   return (
