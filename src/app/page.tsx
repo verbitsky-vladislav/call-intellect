@@ -1,9 +1,11 @@
-import HeroBlock3 from '../components/HeroBlock3';
+import HeroBlock from '../components/HeroBlock';
+import OfferDetails from '../components/OfferDetails';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white">
-      <HeroBlock3 />
+      <HeroBlock />
+      <OfferDetails />
     </div>
   );
 }
