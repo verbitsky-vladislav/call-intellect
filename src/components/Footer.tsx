@@ -25,16 +25,16 @@ export default function Footer() {
           {/* Контакты */}
           <div className="text-gray-600 text-sm">
             По всем вопросам: 
-            <a href="mailto:info@callintellect.com" className="text-[#3895FF] hover:underline ml-1">
-              info@callintellect.com
+            <a href="mailto:sales@call-intellect.ru" className="text-[#3895FF] hover:underline ml-1">
+              sales@call-intellect.ru
             </a>
             <span className="mx-2">•</span>
-            <a href="https://t.me/callintellect" className="text-[#3895FF] hover:underline">
+            <a href="https://t.me/Burlov_AO" className="text-[#3895FF] hover:underline">
               Telegram
             </a>
             <span className="mx-2">•</span>
-            <a href="tel:+74951234567" className="text-[#3895FF] hover:underline">
-              +7 (495) 123-45-67
+            <a href="tel:+79636165035" className="text-[#3895FF] hover:underline">
+              +7 963 616 5035
             </a>
           </div>
         </div>

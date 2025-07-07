@@ -70,9 +70,17 @@ export default function HeroBlock() {
             </div>
             
             <div className="space-y-3 xs:space-y-4 sm:space-y-5">
-              <a 
-                href="/contact"
-                className="group w-full xs:w-auto bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full inline-block text-center"
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('contact-form');
+                  if (element) {
+                    element.scrollIntoView({ 
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }
+                }}
+                className="group w-full xs:w-auto bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full inline-block text-center cursor-pointer"
                 style={{
                   fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
                 }}
@@ -83,7 +91,7 @@ export default function HeroBlock() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
-              </a>
+              </button>
               
               <p 
                 className="text-gray-500 text-center sm:text-left flex items-center justify-center sm:justify-start"

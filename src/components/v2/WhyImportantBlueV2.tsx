@@ -344,7 +344,7 @@ export default function WhyImportantBlueV2() {
         <div className="text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16">
           <a 
             href="/contact"
-            className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full transform rotate-1 inline-block text-center"
+            className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full transform rotate-1 inline-block text-center cursor-pointer"
             style={{
               fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
             }}

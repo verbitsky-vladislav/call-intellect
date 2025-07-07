@@ -197,7 +197,7 @@ export default function ContactForm() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 xs:px-5 py-3 xs:py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3895FF] focus:border-transparent transition-all duration-200 text-base xs:text-lg placeholder-gray-400"
+                  className="w-full px-4 xs:px-5 py-3 xs:py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3895FF] focus:border-transparent transition-all duration-200 text-base xs:text-lg placeholder-gray-400 text-black"
                   placeholder="Ваше имя"
                 />
               </div>
@@ -215,7 +215,7 @@ export default function ContactForm() {
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 xs:px-5 py-3 xs:py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3895FF] focus:border-transparent transition-all duration-200 text-base xs:text-lg placeholder-gray-400"
+                  className="w-full px-4 xs:px-5 py-3 xs:py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#3895FF] focus:border-transparent transition-all duration-200 text-base xs:text-lg placeholder-gray-400 text-black"
                   placeholder="+7 (___) ___-__-__"
                 />
               </div>

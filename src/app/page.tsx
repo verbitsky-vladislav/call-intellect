@@ -15,8 +15,8 @@ export default function Home() {
       <WhyImportantBlue />
       <CaseStudies />
       <TrustBlock />
-      <FAQ />
       <ContactForm />
+      <FAQ />
       <Footer />
     </div>
   );
