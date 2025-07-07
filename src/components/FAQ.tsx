@@ -143,7 +143,13 @@ export default function FAQ() {
             <p className="text-gray-600 text-sm xs:text-base mb-4 xs:mb-6">
               Свяжитесь с нами — мы с радостью ответим на любые вопросы и поможем подобрать оптимальное решение для вашего бизнеса
             </p>
-            <button className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full text-base xs:text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20">
+            <button
+              className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full text-base xs:text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 cursor-pointer"
+              onClick={() => {
+                const el = document.getElementById('contact-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+            >
               <span className="relative z-10 flex items-center justify-center space-x-2">
                 <span>Задать вопрос</span>
                 <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">

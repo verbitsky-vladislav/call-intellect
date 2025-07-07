@@ -11,6 +11,7 @@ export default function ContactForm() {
   });
   const [agreement, setAgreement] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const phoneInputRef = useRef<HTMLInputElement>(null);
   const maskRef = useRef<any>(null);
@@ -73,17 +74,46 @@ export default function ContactForm() {
     setAgreement(e.target.checked);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!agreement) {
-      alert('Необходимо согласие на обработку персональных данных');
+      setToast({ type: 'error', message: 'Необходимо согласие на обработку персональных данных' });
       return;
     }
     
-    // Здесь будет логика отправки формы
-    console.log('Form submitted:', formData);
+    try {
+      const url = 'https://call-intellect.bitrix24.ru/rest/11/hvibf14mn9mik133/crm.lead.add.json';
+      const params = new URLSearchParams();
+      params.append('FIELDS[TITLE]', 'Новый лид');
+      params.append('FIELDS[NAME]', formData.name);
+      params.append('FIELDS[PHONE][0][VALUE]', formData.phone);
+      params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
+      const data = await response.json();
+      if (data.result) {
+        setToast({ type: 'success', message: 'Спасибо! Ваша заявка успешно отправлена.' });
+        setFormData({ name: '', phone: '' });
+        setAgreement(false);
+      } else {
+        setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
+      }
+    } catch (error) {
+      setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
+    }
   };
+
+  // Автоматическое скрытие toast
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const benefits = [
     {
@@ -98,7 +128,7 @@ export default function ContactForm() {
   ];
 
   return (
-    <section className="py-12 xs:py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative">
+    <section id="contact-form" className="py-12 xs:py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative">
       {/* Верхний разделитель */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-30 z-0"></div>
       
@@ -252,6 +282,15 @@ export default function ContactForm() {
           </div>
         </div>
       </div>
+      {/* Toast уведомление */}
+      {toast && (
+        <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-6 py-4 rounded-xl shadow-xl text-white text-base font-semibold transition-all duration-300
+          ${toast.type === 'success' ? 'bg-[#3895FF]' : 'bg-red-500'}`}
+          style={{ minWidth: 260, maxWidth: 400 }}
+        >
+          {toast.message}
+        </div>
+      )}
     </section>
   );
 } 

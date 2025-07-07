@@ -951,6 +951,7 @@ function ContactForm() {
     });
     const [agreement, setAgreement] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [showPolicy, setShowPolicy] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [toast, setToast] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const phoneInputRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     const maskRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -1005,15 +1006,62 @@ function ContactForm() {
     const handleAgreementChange = (e)=>{
         setAgreement(e.target.checked);
     };
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         if (!agreement) {
-            alert('Необходимо согласие на обработку персональных данных');
+            setToast({
+                type: 'error',
+                message: 'Необходимо согласие на обработку персональных данных'
+            });
             return;
         }
-        // Здесь будет логика отправки формы
-        console.log('Form submitted:', formData);
+        try {
+            const url = 'https://call-intellect.bitrix24.ru/rest/11/hvibf14mn9mik133/crm.lead.add.json';
+            const params = new URLSearchParams();
+            params.append('FIELDS[TITLE]', 'Новый лид');
+            params.append('FIELDS[NAME]', formData.name);
+            params.append('FIELDS[PHONE][0][VALUE]', formData.phone);
+            params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: params.toString()
+            });
+            const data = await response.json();
+            if (data.result) {
+                setToast({
+                    type: 'success',
+                    message: 'Спасибо! Ваша заявка успешно отправлена.'
+                });
+                setFormData({
+                    name: '',
+                    phone: ''
+                });
+                setAgreement(false);
+            } else {
+                setToast({
+                    type: 'error',
+                    message: 'Ошибка при отправке. Попробуйте позже.'
+                });
+            }
+        } catch (error) {
+            setToast({
+                type: 'error',
+                message: 'Ошибка при отправке. Попробуйте позже.'
+            });
+        }
     };
+    // Автоматическое скрытие toast
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        if (toast) {
+            const timer = setTimeout(()=>setToast(null), 4000);
+            return ()=>clearTimeout(timer);
+        }
+    }, [
+        toast
+    ]);
     const benefits = [
         {
             text: "Работаем по NDA"
@@ -1026,34 +1074,35 @@ function ContactForm() {
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
+        id: "contact-form",
         className: "py-12 xs:py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-30 z-0"
             }, void 0, false, {
                 fileName: "[project]/src/components/ContactForm.tsx",
-                lineNumber: 103,
+                lineNumber: 133,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-1/2 left-0 w-16 h-32 bg-gradient-to-r from-[#3895FF] to-transparent opacity-5 transform -translate-y-1/2 z-0"
             }, void 0, false, {
                 fileName: "[project]/src/components/ContactForm.tsx",
-                lineNumber: 106,
+                lineNumber: 136,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute top-1/2 right-0 w-16 h-32 bg-gradient-to-l from-[#C8F131] to-transparent opacity-5 transform -translate-y-1/2 z-0"
             }, void 0, false, {
                 fileName: "[project]/src/components/ContactForm.tsx",
-                lineNumber: 107,
+                lineNumber: 137,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#C8F131] to-transparent opacity-30 z-0"
             }, void 0, false, {
                 fileName: "[project]/src/components/ContactForm.tsx",
-                lineNumber: 110,
+                lineNumber: 140,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1080,13 +1129,13 @@ function ContactForm() {
                                                     children: "аудит по звонку"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 124,
+                                                    lineNumber: 154,
                                                     columnNumber: 26
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 147,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1094,13 +1143,13 @@ function ContactForm() {
                                             children: "Оставьте заявку и получите персональный анализ ваших продаж с конкретными рекомендациями"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 126,
+                                            lineNumber: 156,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                    lineNumber: 116,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1114,12 +1163,12 @@ function ContactForm() {
                                                         className: "w-3 xs:w-4 h-3 xs:h-4 text-white"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/ContactForm.tsx",
-                                                        lineNumber: 136,
+                                                        lineNumber: 166,
                                                         columnNumber: 21
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 135,
+                                                    lineNumber: 165,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1127,24 +1176,24 @@ function ContactForm() {
                                                     children: benefit.text
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 138,
+                                                    lineNumber: 168,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, index, true, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 134,
+                                            lineNumber: 164,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                    lineNumber: 132,
+                                    lineNumber: 162,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ContactForm.tsx",
-                            lineNumber: 115,
+                            lineNumber: 145,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1154,7 +1203,7 @@ function ContactForm() {
                                     className: "absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#3895FF]/10 to-transparent rounded-bl-full"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                    lineNumber: 149,
+                                    lineNumber: 179,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -1169,7 +1218,7 @@ function ContactForm() {
                                                     children: "Имя"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 154,
+                                                    lineNumber: 184,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1183,13 +1232,13 @@ function ContactForm() {
                                                     placeholder: "Ваше имя"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 157,
+                                                    lineNumber: 187,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 153,
+                                            lineNumber: 183,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1200,7 +1249,7 @@ function ContactForm() {
                                                     children: "Телефон"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 171,
+                                                    lineNumber: 201,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1215,13 +1264,13 @@ function ContactForm() {
                                                     placeholder: "+7 (___) ___-__-__"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 174,
+                                                    lineNumber: 204,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 170,
+                                            lineNumber: 200,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1237,7 +1286,7 @@ function ContactForm() {
                                                     className: "mt-1 w-4 h-4 text-[#3895FF] bg-gray-100 border-gray-300 rounded focus:ring-[#3895FF] focus:ring-2 cursor-pointer"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 189,
+                                                    lineNumber: 219,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -1254,19 +1303,19 @@ function ContactForm() {
                                                             children: "условия обработки персональных данных"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                                            lineNumber: 200,
+                                                            lineNumber: 230,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                                    lineNumber: 198,
+                                                    lineNumber: 228,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 188,
+                                            lineNumber: 218,
                                             columnNumber: 15
                                         }, this),
                                         showPolicy && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1283,7 +1332,7 @@ function ContactForm() {
                                                         children: "×"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/ContactForm.tsx",
-                                                        lineNumber: 221,
+                                                        lineNumber: 251,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1291,7 +1340,7 @@ function ContactForm() {
                                                         children: "Политика обработки персональных данных"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/ContactForm.tsx",
-                                                        lineNumber: 228,
+                                                        lineNumber: 258,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1301,45 +1350,45 @@ function ContactForm() {
                                                                 children: "Настоящим я даю согласие на обработку моих персональных данных, указанных в форме на сайте, в соответствии с Федеральным законом РФ от 27.07.2006 № 152-ФЗ «О персональных данных»."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/ContactForm.tsx",
-                                                                lineNumber: 230,
+                                                                lineNumber: 260,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 children: "Обработка персональных данных осуществляется в целях рассмотрения заявки, обратной связи и предоставления информации о продуктах и услугах компании."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/ContactForm.tsx",
-                                                                lineNumber: 231,
+                                                                lineNumber: 261,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 children: "Согласие действует с момента отправки формы и может быть отозвано мной в любой момент по письменному обращению."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/ContactForm.tsx",
-                                                                lineNumber: 232,
+                                                                lineNumber: 262,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 children: "Подробнее с политикой обработки персональных данных можно ознакомиться по запросу."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/ContactForm.tsx",
-                                                                lineNumber: 233,
+                                                                lineNumber: 263,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/ContactForm.tsx",
-                                                        lineNumber: 229,
+                                                        lineNumber: 259,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/ContactForm.tsx",
-                                                lineNumber: 217,
+                                                lineNumber: 247,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 213,
+                                            lineNumber: 243,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1349,36 +1398,49 @@ function ContactForm() {
                                             children: "Получить аудит"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ContactForm.tsx",
-                                            lineNumber: 240,
+                                            lineNumber: 270,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ContactForm.tsx",
-                                    lineNumber: 151,
+                                    lineNumber: 181,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/ContactForm.tsx",
-                            lineNumber: 147,
+                            lineNumber: 177,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/ContactForm.tsx",
-                    lineNumber: 113,
+                    lineNumber: 143,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/ContactForm.tsx",
-                lineNumber: 112,
+                lineNumber: 142,
                 columnNumber: 7
+            }, this),
+            toast && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: `fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-6 py-4 rounded-xl shadow-xl text-white text-base font-semibold transition-all duration-300
+          ${toast.type === 'success' ? 'bg-[#3895FF]' : 'bg-red-500'}`,
+                style: {
+                    minWidth: 260,
+                    maxWidth: 400
+                },
+                children: toast.message
+            }, void 0, false, {
+                fileName: "[project]/src/components/ContactForm.tsx",
+                lineNumber: 287,
+                columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ContactForm.tsx",
-        lineNumber: 101,
+        lineNumber: 131,
         columnNumber: 5
     }, this);
 }
@@ -1754,7 +1816,14 @@ function FAQ() {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    className: "group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full text-base xs:text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20",
+                                    className: "group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full text-base xs:text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 cursor-pointer",
+                                    onClick: ()=>{
+                                        const el = document.getElementById('contact-form');
+                                        if (el) el.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start'
+                                        });
+                                    },
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         className: "relative z-10 flex items-center justify-center space-x-2",
                                         children: [
@@ -1762,7 +1831,7 @@ function FAQ() {
                                                 children: "Задать вопрос"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/FAQ.tsx",
-                                                lineNumber: 148,
+                                                lineNumber: 154,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
@@ -1777,18 +1846,18 @@ function FAQ() {
                                                     d: "M13 7l5 5m0 0l-5 5m5-5H6"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/FAQ.tsx",
-                                                    lineNumber: 150,
+                                                    lineNumber: 156,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/FAQ.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 155,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/FAQ.tsx",
-                                        lineNumber: 147,
+                                        lineNumber: 153,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
