@@ -19,7 +19,17 @@ export default function HeroBlock3() {
           <div className="space-y-6 md:space-y-8">
             <div className="space-y-4">
               <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight">
-                Аудит отдела продаж на основе ваших звонков — от AI, который слышит клиента
+                Аудит отдела продаж на основе ваших звонков — <br className="hidden md:block" />
+                <span className="inline-block relative align-middle">
+                  <span className="relative font-bold text-black">
+                    <svg viewBox="0 0 420 56" width="100%" height="2.6em" className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-full pointer-events-none select-none" style={{zIndex: 0}} aria-hidden="true">
+                      <path d="M10 40 Q 60 55 120 40 T 230 40 T 340 40 Q 370 55 410 35 L 410 56 L 10 56 Z" fill="#C1F700" fillOpacity="0.45"/>
+                    </svg>
+                    <span className="relative px-2" style={{zIndex: 1}}>
+                      AI, который слышит клиентов
+                    </span>
+                  </span>
+                </span>
               </h1>
             </div>
             
