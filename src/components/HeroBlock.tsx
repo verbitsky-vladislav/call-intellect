@@ -41,7 +41,7 @@ export default function HeroBlock() {
         <div className="absolute bottom-1/2 right-1/6 w-10 h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-10 transform -rotate-12 animate-pulse" style={{animationDelay: '0.6s'}}></div>
       </div>
       
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px]">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 max-w-[1440px]">
         <div className="grid lg:grid-cols-2 gap-6 xs:gap-8 md:gap-12 lg:gap-16 items-center">
           {/* Левая колонка - контент */}
           <div className="space-y-5 xs:space-y-6 md:space-y-8">

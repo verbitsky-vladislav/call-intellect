@@ -1,24 +1,86 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import IMask from 'imask';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     phone: ''
   });
+  const [agreement, setAgreement] = useState(false);
+  const [showPolicy, setShowPolicy] = useState(false);
+
+  const phoneInputRef = useRef<HTMLInputElement>(null);
+  const maskRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (phoneInputRef.current) {
+      // Создаем маску для российского номера телефона
+      maskRef.current = IMask(phoneInputRef.current, {
+        mask: '+{7} (000) 000-00-00',
+        lazy: false,
+        placeholderChar: '_'
+      });
+
+      // Обработчик изменения значения
+      maskRef.current.on('accept', () => {
+        setFormData(prev => ({
+          ...prev,
+          phone: maskRef.current?.value || ''
+        }));
+      });
+
+      // Обработчик завершения ввода
+      maskRef.current.on('complete', () => {
+        console.log('Номер телефона полностью введен');
+      });
+    }
+
+    // Очистка при размонтировании
+    return () => {
+      if (maskRef.current) {
+        maskRef.current.destroy();
+      }
+    };
+  }, []);
+
+  // Отключение прокрутки при открытом модальном окне
+  useEffect(() => {
+    if (showPolicy) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showPolicy]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    if (name !== 'phone') {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
+
+  const handleAgreementChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAgreement(e.target.checked);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!agreement) {
+      alert('Необходимо согласие на обработку персональных данных');
+      return;
+    }
+    
     // Здесь будет логика отправки формы
     console.log('Form submitted:', formData);
   };
@@ -28,7 +90,7 @@ export default function ContactForm() {
       text: "Работаем по NDA"
     },
     {
-      text: "Ответим в течение 1 дня"
+      text: "Результат в течение 1-2 дней"
     },
     {
       text: "Аудит — бесплатно"
@@ -36,8 +98,18 @@ export default function ContactForm() {
   ];
 
   return (
-    <section className="py-12 xs:py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50">
-      <div className="container mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 max-w-6xl">
+    <section className="py-12 xs:py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-b from-white to-gray-50/50 relative">
+      {/* Верхний разделитель */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-30 z-0"></div>
+      
+      {/* Боковые декоративные элементы */}
+      <div className="absolute top-1/2 left-0 w-16 h-32 bg-gradient-to-r from-[#3895FF] to-transparent opacity-5 transform -translate-y-1/2 z-0"></div>
+      <div className="absolute top-1/2 right-0 w-16 h-32 bg-gradient-to-l from-[#C8F131] to-transparent opacity-5 transform -translate-y-1/2 z-0"></div>
+      
+      {/* Нижний разделитель */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#C8F131] to-transparent opacity-30 z-0"></div>
+      
+      <div className="container mx-auto px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Левая колонка - контент */}
           <div className="space-y-6 xs:space-y-8">
@@ -72,8 +144,11 @@ export default function ContactForm() {
           </div>
 
           {/* Правая колонка - форма */}
-          <div className="bg-white rounded-2xl p-6 xs:p-8 sm:p-10 shadow-xl border border-gray-200">
-            <form onSubmit={handleSubmit} className="space-y-5 xs:space-y-6">
+          <div className="bg-white rounded-2xl p-6 xs:p-8 sm:p-10 shadow-xl border border-gray-200 relative overflow-hidden">
+            {/* Декоративный элемент внутри формы */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#3895FF]/10 to-transparent rounded-bl-full"></div>
+            
+                        <form onSubmit={handleSubmit} className="space-y-5 xs:space-y-6 relative z-10">
               {/* Поле Имя */}
               <div>
                 <label htmlFor="name" className="block text-base xs:text-lg font-medium text-gray-700 mb-2">
@@ -97,6 +172,7 @@ export default function ContactForm() {
                   Телефон
                 </label>
                 <input
+                  ref={phoneInputRef}
                   type="tel"
                   id="phone"
                   name="phone"
@@ -108,10 +184,67 @@ export default function ContactForm() {
                 />
               </div>
 
+              {/* Согласие на обработку персональных данных */}
+              <div className="flex items-start space-x-3">
+                <input
+                  type="checkbox"
+                  id="agreement"
+                  name="agreement"
+                  checked={agreement}
+                  onChange={handleAgreementChange}
+                  required
+                  className="mt-1 w-4 h-4 text-[#3895FF] bg-gray-100 border-gray-300 rounded focus:ring-[#3895FF] focus:ring-2 cursor-pointer"
+                />
+                <label htmlFor="agreement" className="text-xs xs:text-sm text-gray-600 leading-relaxed select-none cursor-pointer">
+                  Я принимаю{' '}
+                  <button
+                    type="button"
+                    onClick={() => setShowPolicy(true)}
+                    className="text-[#3895FF] hover:underline focus:outline-none cursor-pointer"
+                    tabIndex={0}
+                  >
+                    условия обработки персональных данных
+                  </button>
+                </label>
+              </div>
+
+              {/* Модальное окно политики */}
+              {showPolicy && (
+                <div
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+                  onClick={() => setShowPolicy(false)}
+                >
+                  <div
+                    className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 xs:p-8 relative animate-fade-in"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <button
+                      className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold focus:outline-none cursor-pointer"
+                      onClick={() => setShowPolicy(false)}
+                      aria-label="Закрыть"
+                    >
+                      ×
+                    </button>
+                    <h2 className="text-xl xs:text-2xl font-bold mb-4 text-gray-900">Политика обработки персональных данных</h2>
+                    <div className="text-gray-700 text-sm xs:text-base space-y-4">
+                      <p>Настоящим я даю согласие на обработку моих персональных данных, указанных в форме на сайте, в соответствии с Федеральным законом РФ от 27.07.2006 № 152-ФЗ «О персональных данных».</p>
+                      <p>Обработка персональных данных осуществляется в целях рассмотрения заявки, обратной связи и предоставления информации о продуктах и услугах компании.</p>
+                      <p>Согласие действует с момента отправки формы и может быть отозвано мной в любой момент по письменному обращению.</p>
+                      <p>Подробнее с политикой обработки персональных данных можно ознакомиться по запросу.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Кнопка отправки */}
               <button
                 type="submit"
-                className="w-full bg-[#3895FF] hover:bg-[#3895FF]/90 text-white font-bold py-4 xs:py-5 px-8 xs:px-10 rounded-xl text-lg xs:text-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                disabled={!agreement}
+                className={`w-full font-bold py-4 xs:py-5 px-8 xs:px-10 rounded-xl text-lg xs:text-xl transition-all duration-200 shadow-lg cursor-pointer ${
+                  agreement 
+                    ? 'bg-[#3895FF] hover:bg-[#3895FF]/90 text-white hover:shadow-xl' 
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
               >
                 Получить аудит
               </button>

@@ -74,7 +74,7 @@ export default function FAQ() {
         <div className="absolute bottom-1/2 right-1/6 w-10 h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-10 transform -rotate-12 animate-pulse" style={{animationDelay: '0.6s'}}></div>
       </div>
 
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px]">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 max-w-[1440px]">
         {/* Заголовок секции */}
         <div className="text-center mb-6 xs:mb-8 sm:mb-10 md:mb-12">
           <h2 
@@ -101,7 +101,7 @@ export default function FAQ() {
               {/* Вопрос */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full p-4 xs:p-5 sm:p-6 text-left flex items-center justify-between space-x-3 xs:space-x-4 hover:bg-gray-50/50 transition-colors duration-200"
+                className="w-full p-4 xs:p-5 sm:p-6 text-left flex items-center justify-between space-x-3 xs:space-x-4 hover:bg-gray-50/50 transition-colors duration-200 cursor-pointer"
               >
                 <div className="flex items-center justify-between flex-1 min-w-0">
                   {/* Текст вопроса */}
