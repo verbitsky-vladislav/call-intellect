@@ -1,9 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { FaSearch, FaHeart, FaRocket } from 'react-icons/fa';
+import ContactModal from './ContactModal';
 
 export default function HeroBlock() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <section className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-[#C8F131]/5 flex items-center relative overflow-hidden">
       {/* Декоративные фоновые элементы */}
@@ -71,15 +73,7 @@ export default function HeroBlock() {
             
             <div className="space-y-3 xs:space-y-4 sm:space-y-5">
               <button 
-                onClick={() => {
-                  const element = document.getElementById('contact-form');
-                  if (element) {
-                    element.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
+                onClick={() => setIsModalOpen(true)}
                 className="group w-full xs:w-auto bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full inline-block text-center cursor-pointer"
                 style={{
                   fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
@@ -253,6 +247,12 @@ export default function HeroBlock() {
           </div>
         </div>
       </div>
+      
+      {/* Модальное окно с формой */}
+      <ContactModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </section>
   );
 } 
