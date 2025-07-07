@@ -4,6 +4,8 @@ import WhyImportantBlue from '../components/WhyImportantBlue';
 import CaseStudies from '../components/CaseStudies';
 import TrustBlock from '../components/TrustBlock';
 import FAQ from '../components/FAQ';
+import Footer from '../components/Footer';
+import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       <CaseStudies />
       <TrustBlock />
       <FAQ />
+      <ContactForm />
+      <Footer />
     </div>
   );
 }

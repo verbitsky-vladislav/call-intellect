@@ -99,25 +99,22 @@ export default function FAQV2() {
           {faqs.map((faq, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 relative group hover:shadow-xl transition-all duration-300 transform"
-              style={{
-                transform: `rotate(${(index % 2 === 0 ? 1 : -1) * (index * 0.5)}deg)`
-              }}
+              className="bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 relative group hover:shadow-xl transition-all duration-300"
             >
-              <div className="absolute -top-2 -left-2 w-5 h-5 bg-[#3895FF] rounded-full shadow-lg transform rotate-15"></div>
+              <div className="absolute -top-2 -left-2 w-5 h-5 bg-[#3895FF] rounded-full shadow-lg"></div>
               <button
                 className="w-full p-4 xs:p-5 sm:p-6 md:p-8 text-left focus:outline-none"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3 xs:space-x-4">
-                    <div 
-                      className="bg-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300 transform -rotate-1"
-                      style={{
-                        width: 'clamp(2.5rem, 4vw, 3rem)',
-                        height: 'clamp(2.5rem, 4vw, 3rem)'
-                      }}
-                    >
+                                         <div 
+                       className="bg-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                       style={{
+                         width: 'clamp(2.5rem, 4vw, 3rem)',
+                         height: 'clamp(2.5rem, 4vw, 3rem)'
+                       }}
+                     >
                       <FaQuestion 
                         className="text-white" 
                         style={{
@@ -161,8 +158,9 @@ export default function FAQV2() {
         
         {/* CTA кнопка */}
         <div className="text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16">
-          <button 
-            className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full transform -rotate-1"
+          <a 
+            href="/contact"
+            className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full inline-block text-center"
             style={{
               fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
             }}
@@ -171,7 +169,7 @@ export default function FAQV2() {
               <span>Задать вопрос</span>
               <FaQuestion className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 animate-pulse" />
             </span>
-          </button>
+          </a>
         </div>
       </div>
     </section>

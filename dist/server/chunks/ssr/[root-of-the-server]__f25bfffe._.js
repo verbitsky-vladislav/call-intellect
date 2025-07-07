@@ -3599,16 +3599,13 @@ function FAQV2() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "max-w-3xl mx-auto space-y-3 xs:space-y-4 sm:space-y-5",
                         children: faqs.map((faq, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 relative group hover:shadow-xl transition-all duration-300 transform",
-                                style: {
-                                    transform: `rotate(${(index % 2 === 0 ? 1 : -1) * (index * 0.5)}deg)`
-                                },
+                                className: "bg-white rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 relative group hover:shadow-xl transition-all duration-300",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "absolute -top-2 -left-2 w-5 h-5 bg-[#3895FF] rounded-full shadow-lg transform rotate-15"
+                                        className: "absolute -top-2 -left-2 w-5 h-5 bg-[#3895FF] rounded-full shadow-lg"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                        lineNumber: 107,
+                                        lineNumber: 104,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -3622,7 +3619,7 @@ function FAQV2() {
                                                         className: "flex items-center space-x-3 xs:space-x-4",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "bg-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300 transform -rotate-1",
+                                                                className: "bg-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300",
                                                                 style: {
                                                                     width: 'clamp(2.5rem, 4vw, 3rem)',
                                                                     height: 'clamp(2.5rem, 4vw, 3rem)'
@@ -3635,13 +3632,13 @@ function FAQV2() {
                                                                     }
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/components/FAQV2.tsx",
-                                                                    lineNumber: 121,
+                                                                    lineNumber: 118,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/FAQV2.tsx",
-                                                                lineNumber: 114,
-                                                                columnNumber: 21
+                                                                lineNumber: 111,
+                                                                columnNumber: 42
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
                                                                 className: "font-semibold text-gray-900",
@@ -3651,26 +3648,26 @@ function FAQV2() {
                                                                 children: faq.question
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/FAQV2.tsx",
-                                                                lineNumber: 129,
+                                                                lineNumber: 126,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                                        lineNumber: 113,
+                                                        lineNumber: 110,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaChevronDown"], {
                                                         className: `w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 text-[#3895FF] transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                                        lineNumber: 138,
+                                                        lineNumber: 135,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/components/FAQV2.tsx",
-                                                lineNumber: 112,
+                                                lineNumber: 109,
                                                 columnNumber: 17
                                             }, this),
                                             openIndex === index && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3683,18 +3680,18 @@ function FAQV2() {
                                                     children: faq.answer
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/FAQV2.tsx",
-                                                    lineNumber: 147,
+                                                    lineNumber: 144,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/FAQV2.tsx",
-                                                lineNumber: 146,
+                                                lineNumber: 143,
                                                 columnNumber: 19
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                        lineNumber: 108,
+                                        lineNumber: 105,
                                         columnNumber: 15
                                     }, this)
                                 ]
@@ -3711,7 +3708,7 @@ function FAQV2() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            className: "group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full transform -rotate-1",
+                            className: "group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full",
                             style: {
                                 fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
                             },
@@ -3722,30 +3719,30 @@ function FAQV2() {
                                         children: "Задать вопрос"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                        lineNumber: 171,
+                                        lineNumber: 168,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fa$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["FaQuestion"], {
                                         className: "w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 animate-pulse"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/FAQV2.tsx",
-                                        lineNumber: 172,
+                                        lineNumber: 169,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/FAQV2.tsx",
-                                lineNumber: 170,
+                                lineNumber: 167,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/FAQV2.tsx",
-                            lineNumber: 164,
-                            columnNumber: 11
+                            lineNumber: 161,
+                            columnNumber: 22
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/FAQV2.tsx",
-                        lineNumber: 163,
+                        lineNumber: 160,
                         columnNumber: 9
                     }, this)
                 ]

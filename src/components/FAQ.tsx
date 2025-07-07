@@ -38,7 +38,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-6 xs:py-8 sm:py-10 md:py-12 lg:py-16 bg-gradient-to-br from-white via-blue-50/20 to-[#C8F131]/5 relative overflow-hidden">
+    <section className="py-8 xs:py-10 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-br from-white via-blue-50/20 to-[#C8F131]/5 relative overflow-hidden">
       {/* Декоративные фоновые элементы */}
       <div className="absolute top-0 left-0 w-full h-full">
         {/* Основные круги */}
@@ -74,11 +74,11 @@ export default function FAQ() {
         <div className="absolute bottom-1/2 right-1/6 w-10 h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-10 transform -rotate-12 animate-pulse" style={{animationDelay: '0.6s'}}></div>
       </div>
 
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px] w-full">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 max-w-[1440px]">
         {/* Заголовок секции */}
-        <div className="text-center mb-4 xs:mb-6 sm:mb-8 md:mb-10">
+        <div className="text-center mb-6 xs:mb-8 sm:mb-10 md:mb-12">
           <h2 
-            className="font-bold text-black leading-tight mb-2 xs:mb-3 sm:mb-4"
+            className="font-bold text-black leading-tight mb-3 xs:mb-4"
             style={{
               fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
               lineHeight: '1.2'
@@ -86,18 +86,13 @@ export default function FAQ() {
           >
             Часто задаваемые <span className="text-[#3895FF]">вопросы</span>
           </h2>
-          <p 
-            className="text-gray-600 max-w-2xl mx-auto"
-            style={{
-              fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)'
-            }}
-          >
+          <p className="text-gray-600 text-sm xs:text-base sm:text-lg max-w-2xl mx-auto">
             Ответы на самые популярные вопросы о нашем AI-аудите
           </p>
         </div>
 
         {/* FAQ аккордеон */}
-        <div className="max-w-4xl mx-auto space-y-2 xs:space-y-3 sm:space-y-4">
+        <div className="max-w-4xl mx-auto space-y-3 xs:space-y-4">
           {faqItems.map((item, index) => (
             <div 
               key={index}
@@ -106,34 +101,18 @@ export default function FAQ() {
               {/* Вопрос */}
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full p-3 xs:p-4 sm:p-5 md:p-6 text-left flex items-center justify-between space-x-2 xs:space-x-3 sm:space-x-4 hover:bg-gray-50/50 transition-colors duration-200"
+                className="w-full p-4 xs:p-5 sm:p-6 text-left flex items-center justify-between space-x-3 xs:space-x-4 hover:bg-gray-50/50 transition-colors duration-200 cursor-pointer"
               >
                 <div className="flex items-center justify-between flex-1 min-w-0">
                   {/* Текст вопроса */}
-                  <h3 
-                    className="font-semibold text-gray-900 leading-tight flex-1 min-w-0 pr-2 xs:pr-3 sm:pr-4"
-                    style={{
-                      fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)'
-                    }}
-                  >
+                  <h3 className="font-semibold text-sm xs:text-base sm:text-lg text-gray-900 leading-tight flex-1 min-w-0 pr-4">
                     {item.question}
                   </h3>
                 </div>
                 
                 {/* Стрелка */}
-                <div 
-                  className={`bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180 bg-[#3895FF] text-white' : 'group-hover:bg-gray-200'}`}
-                  style={{
-                    width: 'clamp(1.5rem, 4vw, 2rem)',
-                    height: 'clamp(1.5rem, 4vw, 2rem)'
-                  }}
-                >
-                  <FaChevronDown 
-                    style={{
-                      width: 'clamp(0.75rem, 2vw, 1rem)',
-                      height: 'clamp(0.75rem, 2vw, 1rem)'
-                    }}
-                  />
+                <div className={`w-6 xs:w-7 sm:w-8 h-6 xs:h-7 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180 bg-[#3895FF] text-white' : 'group-hover:bg-gray-200'}`}>
+                  <FaChevronDown className="w-3 xs:w-4 sm:w-5 h-3 xs:h-4 sm:h-5" />
                 </div>
               </button>
               
@@ -143,14 +122,9 @@ export default function FAQ() {
                   openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="px-3 xs:px-4 sm:px-5 md:px-6 pb-3 xs:pb-4 sm:pb-5 md:pb-6">
-                  <div className="border-l-4 border-[#3895FF] pl-3 xs:pl-4 sm:pl-5 md:pl-6">
-                    <p 
-                      className="text-gray-700 leading-relaxed"
-                      style={{
-                        fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
-                      }}
-                    >
+                <div className="px-4 xs:px-5 sm:px-6 pb-4 xs:pb-5 sm:pb-6">
+                  <div className="border-l-4 border-[#3895FF] pl-4 xs:pl-5 sm:pl-6">
+                    <p className="text-gray-700 text-sm xs:text-base leading-relaxed">
                       {item.answer}
                     </p>
                   </div>
@@ -161,42 +135,24 @@ export default function FAQ() {
         </div>
 
         {/* Дополнительная информация */}
-        <div className="text-center mt-6 xs:mt-8 sm:mt-10 md:mt-12">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 xs:p-5 sm:p-6 md:p-8 shadow-xl border border-gray-100/50 max-w-2xl mx-auto">
-            <h3 
-              className="font-semibold text-gray-900 mb-2 xs:mb-3 sm:mb-4"
-              style={{
-                fontSize: 'clamp(1.125rem, 3vw, 1.5rem)'
-              }}
-            >
+        <div className="text-center mt-8 xs:mt-10 sm:mt-12">
+          <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 xs:p-6 sm:p-8 shadow-xl border border-gray-100/50 max-w-2xl mx-auto">
+            <h3 className="font-semibold text-lg xs:text-xl sm:text-2xl text-gray-900 mb-3 xs:mb-4">
               Остались вопросы?
             </h3>
-            <p 
-              className="text-gray-600 mb-3 xs:mb-4 sm:mb-6"
-              style={{
-                fontSize: 'clamp(0.875rem, 2.5vw, 1rem)'
-              }}
-            >
+            <p className="text-gray-600 text-sm xs:text-base mb-4 xs:mb-6">
               Свяжитесь с нами — мы с радостью ответим на любые вопросы и поможем подобрать оптимальное решение для вашего бизнеса
             </p>
-            <button 
-              className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20"
-              style={{
-                fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)'
+            <button
+              className="group bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 px-6 xs:px-8 rounded-full text-base xs:text-lg transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 cursor-pointer"
+              onClick={() => {
+                const el = document.getElementById('contact-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
               <span className="relative z-10 flex items-center justify-center space-x-2">
                 <span>Задать вопрос</span>
-                <svg 
-                  className="animate-pulse" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                  style={{
-                    width: 'clamp(1.25rem, 3vw, 1.5rem)',
-                    height: 'clamp(1.25rem, 3vw, 1.5rem)'
-                  }}
-                >
+                <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
