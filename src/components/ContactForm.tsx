@@ -87,6 +87,9 @@ export default function ContactForm() {
       const params = new URLSearchParams();
       params.append('FIELDS[TITLE]', 'Новый лид');
       params.append('FIELDS[NAME]', formData.name);
+      params.append('FIELDS[LAST_NAME]', 'Тестовый');
+      params.append('FIELDS[EMAIL][0][VALUE]', 'test@example.com');
+      params.append('FIELDS[EMAIL][0][VALUE_TYPE]', 'WORK');
       params.append('FIELDS[PHONE][0][VALUE]', formData.phone);
       params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
       const response = await fetch(url, {
