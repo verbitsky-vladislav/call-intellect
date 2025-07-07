@@ -83,27 +83,18 @@ export default function ContactForm() {
     }
     
     try {
-      const url = 'https://call-intellect.bitrix24.ru/rest/11/hvibf14mn9mik133/crm.lead.add.json';
-      const params = new URLSearchParams();
-      params.append('FIELDS[TITLE]', 'Новый лид');
-      params.append('FIELDS[NAME]', formData.name);
-      params.append('FIELDS[LAST_NAME]', 'Тестовый');
-      params.append('FIELDS[EMAIL][0][VALUE]', 'test@example.com');
-      params.append('FIELDS[EMAIL][0][VALUE_TYPE]', 'WORK');
-      params.append('FIELDS[PHONE][0][VALUE]', formData.phone);
-      params.append('FIELDS[PHONE][0][VALUE_TYPE]', 'WORK');
-      const response = await fetch(url, {
+      const response = await fetch('/api/send-lead', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: formData.name, phone: formData.phone }),
       });
       const data = await response.json();
-      if (data.result) {
+      if (data.success) {
         setToast({ type: 'success', message: 'Спасибо! Ваша заявка успешно отправлена.' });
         setFormData({ name: '', phone: '' });
         setAgreement(false);
       } else {
-        setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
+        setToast({ type: 'error', message: data.error || 'Ошибка при отправке. Попробуйте позже.' });
       }
     } catch (error) {
       setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
