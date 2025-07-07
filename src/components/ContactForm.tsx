@@ -14,6 +14,7 @@ export default function ContactForm() {
   const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const phoneInputRef = useRef<HTMLInputElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const maskRef = useRef<any>(null);
 
   useEffect(() => {
@@ -105,7 +106,7 @@ export default function ContactForm() {
       } else {
         setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
       }
-    } catch (error) {
+    } catch {
       setToast({ type: 'error', message: 'Ошибка при отправке. Попробуйте позже.' });
     }
   };

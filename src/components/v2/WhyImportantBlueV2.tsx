@@ -117,7 +117,7 @@ export default function WhyImportantBlueV2() {
                         fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
                       }}
                     >
-                      Менеджеры не понимают, на каком этапе сделки "срываются"
+                      Менеджеры не понимают, на каком этапе сделки &ldquo;срываются&rdquo;
                     </p>
                   </div>
                 </div>
