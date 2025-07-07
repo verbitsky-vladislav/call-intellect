@@ -41,16 +41,16 @@ export default function HeroBlock() {
         <div className="absolute bottom-1/2 right-1/6 w-10 h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-10 transform -rotate-12 animate-pulse" style={{animationDelay: '0.6s'}}></div>
       </div>
       
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px]">
-        <div className="grid lg:grid-cols-2 gap-6 xs:gap-8 md:gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px] w-full">
+        <div className="grid lg:grid-cols-2 gap-4 xs:gap-6 sm:gap-8 md:gap-10 lg:gap-16 items-center">
           {/* Левая колонка - контент */}
-          <div className="space-y-5 xs:space-y-6 md:space-y-8">
-            <div className="space-y-3 xs:space-y-4">
+          <div className="space-y-4 xs:space-y-5 sm:space-y-6 md:space-y-8">
+            <div className="space-y-2 xs:space-y-3 sm:space-y-4">
               <h1
                 className="font-bold text-black leading-tight break-words"
                 style={{
-                  fontSize: 'clamp(2.1rem, 7vw, 3.5rem)',
-                  lineHeight: '1.13',
+                  fontSize: 'clamp(1.8rem, 5.5vw, 3.5rem)',
+                  lineHeight: '1.1',
                   wordBreak: 'break-word',
                   maxWidth: '100%',
                 }}
@@ -59,8 +59,8 @@ export default function HeroBlock() {
                 <span
                   className="font-bold text-[#3895FF] inline-block"
                   style={{
-                    fontSize: 'clamp(2.1rem, 7vw, 3.5rem)',
-                    lineHeight: '1.13',
+                    fontSize: 'clamp(1.8rem, 5.5vw, 3.5rem)',
+                    lineHeight: '1.1',
                     wordBreak: 'break-word',
                   }}
                 >
@@ -69,17 +69,27 @@ export default function HeroBlock() {
               </h1>
             </div>
             
-            <div className="space-y-2 xs:space-y-3 md:space-y-4">
-              <button className="group w-full xs:w-auto bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full text-base xs:text-lg sm:text-xl transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[180px] max-w-full">
+            <div className="space-y-3 xs:space-y-4 sm:space-y-5">
+              <button 
+                className="group w-full xs:w-auto bg-[#3895FF] hover:bg-[#3895FF] text-white font-bold py-3 xs:py-4 sm:py-5 px-6 xs:px-8 sm:px-10 rounded-full transition-all duration-300 transform hover:scale-110 shadow-2xl relative overflow-hidden border-2 border-white/20 min-w-[160px] max-w-full"
+                style={{
+                  fontSize: 'clamp(0.875rem, 2.5vw, 1.25rem)'
+                }}
+              >
                 <span className="relative z-10 flex items-center justify-center space-x-2">
                   <span>Оставить заявку</span>
-                  <svg className="w-5 h-5 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </span>
               </button>
               
-              <p className="text-xs xs:text-sm text-gray-500 text-center sm:text-left flex items-center justify-center sm:justify-start">
+              <p 
+                className="text-gray-500 text-center sm:text-left flex items-center justify-center sm:justify-start"
+                style={{
+                  fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
+                }}
+              >
                 <span className="w-2 h-2 bg-[#C8F131] rounded-full mr-2 animate-pulse"></span>
                 — ответим в течение пары часов
               </p>
@@ -87,45 +97,123 @@ export default function HeroBlock() {
           </div>
           
           {/* Правая колонка - карточки */}
-          <div className="space-y-3 xs:space-y-4 sm:space-y-6 mt-8 lg:mt-0">
+          <div className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 mt-6 lg:mt-0">
             {/* Карточка 1 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
-              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-6 h-4 sm:h-6 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-full shadow-lg"></div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-5 md:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
+              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-full shadow-lg"></div>
               <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4">
-                <div className="w-7 xs:w-8 sm:w-12 h-7 xs:h-8 sm:h-12 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <FaSearch className="w-4 xs:w-5 sm:w-6 h-4 xs:h-5 sm:h-6 text-white" />
+                <div 
+                  className="bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    width: 'clamp(2rem, 4vw, 3rem)',
+                    height: 'clamp(2rem, 4vw, 3rem)'
+                  }}
+                >
+                  <FaSearch 
+                    className="text-white" 
+                    style={{
+                      width: 'clamp(1rem, 2.5vw, 1.5rem)',
+                      height: 'clamp(1rem, 2.5vw, 1.5rem)'
+                    }}
+                  />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-xs xs:text-sm sm:text-lg text-gray-900">Узнайте, где теряются сделки</h3>
-                  <p className="text-gray-700 text-[10px] xs:text-xs sm:text-sm font-medium">AI анализирует каждый звонок и выявляет критические моменты</p>
+                  <h3 
+                    className="font-semibold text-gray-900"
+                    style={{
+                      fontSize: 'clamp(0.75rem, 2.5vw, 1.125rem)'
+                    }}
+                  >
+                    Узнайте, где теряются сделки
+                  </h3>
+                  <p 
+                    className="text-gray-700 font-medium"
+                    style={{
+                      fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
+                    }}
+                  >
+                    AI анализирует каждый звонок и выявляет критические моменты
+                  </p>
                 </div>
               </div>
             </div>
             
             {/* Карточка 2 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-gray-100/50 relative ml-2 xs:ml-4 sm:ml-8 group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
-              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-6 h-4 sm:h-6 bg-[#C8F131] rounded-full shadow-lg"></div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-5 md:p-6 shadow-xl border border-gray-100/50 relative ml-2 xs:ml-4 sm:ml-6 md:ml-8 group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
+              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 bg-[#C8F131] rounded-full shadow-lg"></div>
               <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4">
-                <div className="w-7 xs:w-8 sm:w-12 h-7 xs:h-8 sm:h-12 bg-[#C8F131] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <FaHeart className="w-4 xs:w-5 sm:w-6 h-4 xs:h-5 sm:h-6 text-white" />
+                <div 
+                  className="bg-[#C8F131] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    width: 'clamp(2rem, 4vw, 3rem)',
+                    height: 'clamp(2rem, 4vw, 3rem)'
+                  }}
+                >
+                  <FaHeart 
+                    className="text-white" 
+                    style={{
+                      width: 'clamp(1rem, 2.5vw, 1.5rem)',
+                      height: 'clamp(1rem, 2.5vw, 1.5rem)'
+                    }}
+                  />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-xs xs:text-sm sm:text-lg text-gray-900">Что реально волнует ваших клиентов</h3>
-                  <p className="text-gray-700 text-[10px] xs:text-xs sm:text-sm font-medium">Глубокий анализ потребностей и болей клиентов</p>
+                  <h3 
+                    className="font-semibold text-gray-900"
+                    style={{
+                      fontSize: 'clamp(0.75rem, 2.5vw, 1.125rem)'
+                    }}
+                  >
+                    Что реально волнует ваших клиентов
+                  </h3>
+                  <p 
+                    className="text-gray-700 font-medium"
+                    style={{
+                      fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
+                    }}
+                  >
+                    Глубокий анализ потребностей и болей клиентов
+                  </p>
                 </div>
               </div>
             </div>
             
             {/* Карточка 3 */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
-              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-6 h-4 sm:h-6 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-full shadow-lg"></div>
+            <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-5 md:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
+              <div className="absolute -top-2 sm:-top-3 -left-2 sm:-left-3 w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-full shadow-lg"></div>
               <div className="flex items-center space-x-2 xs:space-x-3 sm:space-x-4">
-                <div className="w-7 xs:w-8 sm:w-12 h-7 xs:h-8 sm:h-12 bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <FaRocket className="w-4 xs:w-5 sm:w-6 h-4 xs:h-5 sm:h-6 text-white" />
+                <div 
+                  className="bg-gradient-to-r from-[#3895FF] to-[#3895FF] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300"
+                  style={{
+                    width: 'clamp(2rem, 4vw, 3rem)',
+                    height: 'clamp(2rem, 4vw, 3rem)'
+                  }}
+                >
+                  <FaRocket 
+                    className="text-white" 
+                    style={{
+                      width: 'clamp(1rem, 2.5vw, 1.5rem)',
+                      height: 'clamp(1rem, 2.5vw, 1.5rem)'
+                    }}
+                  />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-xs xs:text-sm sm:text-lg text-gray-900">Как улучшить продажи без прослушки и CRM-анализов</h3>
-                  <p className="text-gray-700 text-[10px] xs:text-xs sm:text-sm font-medium">Практические рекомендации для роста продаж</p>
+                  <h3 
+                    className="font-semibold text-gray-900"
+                    style={{
+                      fontSize: 'clamp(0.75rem, 2.5vw, 1.125rem)'
+                    }}
+                  >
+                    Как улучшить продажи без прослушки и CRM-анализов
+                  </h3>
+                  <p 
+                    className="text-gray-700 font-medium"
+                    style={{
+                      fontSize: 'clamp(0.625rem, 2vw, 0.875rem)'
+                    }}
+                  >
+                    Практические рекомендации для роста продаж
+                  </p>
                 </div>
               </div>
             </div>
@@ -133,8 +221,20 @@ export default function HeroBlock() {
             {/* Центральная иконка вместо 3D персонажа */}
             <div className="hidden md:flex justify-center pt-4 sm:pt-6">
               <div className="relative">
-                <div className="w-16 xs:w-20 sm:w-24 h-16 xs:h-20 sm:h-24 bg-gradient-to-br from-[#3895FF] to-[#3895FF] rounded-2xl flex items-center justify-center shadow-xl group hover:scale-110 transition-transform duration-300">
-                  <FaSearch className="w-8 xs:w-10 sm:w-12 h-8 xs:h-10 sm:h-12 text-white animate-pulse" />
+                <div 
+                  className="bg-gradient-to-br from-[#3895FF] to-[#3895FF] rounded-2xl flex items-center justify-center shadow-xl group hover:scale-110 transition-transform duration-300"
+                  style={{
+                    width: 'clamp(4rem, 8vw, 6rem)',
+                    height: 'clamp(4rem, 8vw, 6rem)'
+                  }}
+                >
+                  <FaSearch 
+                    className="text-white animate-pulse" 
+                    style={{
+                      width: 'clamp(2rem, 4vw, 3rem)',
+                      height: 'clamp(2rem, 4vw, 3rem)'
+                    }}
+                  />
                 </div>
                 {/* Декоративные элементы вокруг иконки */}
                 <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#C8F131] rounded-full opacity-60 animate-ping"></div>

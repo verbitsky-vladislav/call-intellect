@@ -44,7 +44,7 @@ export default function OfferDetails() {
   ];
 
   return (
-    <section className="py-8 xs:py-10 sm:py-12 md:py-16 lg:py-20 bg-white relative overflow-hidden">
+    <section className="py-6 xs:py-8 sm:py-10 md:py-12 lg:py-16 bg-white relative overflow-hidden">
       {/* Декоративные фоновые элементы */}
       <div className="absolute top-0 left-0 w-full h-full">
         {/* Основные круги */}
@@ -80,11 +80,11 @@ export default function OfferDetails() {
         <div className="absolute bottom-1/2 left-1/6 w-10 h-1 bg-gradient-to-r from-transparent via-[#3895FF] to-transparent opacity-10 transform -rotate-12 animate-pulse" style={{animationDelay: '0.6s'}}></div>
       </div>
 
-      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px]">
+      <div className="container mx-auto px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 relative z-10 max-w-[1440px] w-full">
         {/* Заголовок секции */}
-        <div className="text-center mb-6 xs:mb-8 sm:mb-10 md:mb-12">
+        <div className="text-center mb-4 xs:mb-6 sm:mb-8 md:mb-10">
           <h2 
-            className="font-bold text-black leading-tight mb-3 xs:mb-4"
+            className="font-bold text-black leading-tight mb-2 xs:mb-3 sm:mb-4"
             style={{
               fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
               lineHeight: '1.2'
@@ -95,26 +95,48 @@ export default function OfferDetails() {
         </div>
 
         {/* Карточки преимуществ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 xs:gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 xs:gap-3 sm:gap-4 md:gap-6">
           {benefits.map((benefit, index) => (
             <div 
               key={index}
-              className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0"
+              className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-5 md:p-6 shadow-xl border border-gray-100/50 relative group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0"
             >
               {/* Декоративная точка */}
               <div className={`absolute -top-1 sm:-top-2 -left-1 sm:-left-2 w-3 sm:w-4 h-3 sm:h-4 ${benefit.color.includes('bg-') ? benefit.color : `bg-gradient-to-r ${benefit.color}`} rounded-full shadow-lg`}></div>
               
               {/* Иконка */}
-              <div className={`w-10 xs:w-12 sm:w-14 h-10 xs:h-12 sm:h-14 ${benefit.color.includes('bg-') ? benefit.color : `bg-gradient-to-r ${benefit.color}`} rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300 mb-3 xs:mb-4`}>
-                <benefit.icon className="w-5 xs:w-6 sm:w-7 h-5 xs:h-6 sm:h-7 text-white" />
+              <div 
+                className={`${benefit.color.includes('bg-') ? benefit.color : `bg-gradient-to-r ${benefit.color}`} rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform duration-300 mb-3 xs:mb-4`}
+                style={{
+                  width: 'clamp(2.5rem, 5vw, 3.5rem)',
+                  height: 'clamp(2.5rem, 5vw, 3.5rem)'
+                }}
+              >
+                <benefit.icon 
+                  className="text-white" 
+                  style={{
+                    width: 'clamp(1.25rem, 3vw, 1.75rem)',
+                    height: 'clamp(1.25rem, 3vw, 1.75rem)'
+                  }}
+                />
               </div>
               
               {/* Контент */}
               <div className="space-y-1 xs:space-y-2">
-                <h3 className="font-semibold text-sm xs:text-base sm:text-lg text-gray-900 leading-tight">
+                <h3 
+                  className="font-semibold text-gray-900 leading-tight"
+                  style={{
+                    fontSize: 'clamp(0.875rem, 2.5vw, 1.125rem)'
+                  }}
+                >
                   {benefit.title}
                 </h3>
-                <p className="text-gray-700 text-xs xs:text-sm leading-relaxed">
+                <p 
+                  className="text-gray-700 leading-relaxed"
+                  style={{
+                    fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'
+                  }}
+                >
                   {benefit.description}
                 </p>
               </div>
